@@ -8,5 +8,7 @@
     "sourceMap": true,
     "forceConsistentCasingInFileNames": true,
     "outDir": "./dist/"
-  }
+  },
+  "exclude": ["node_modules"],
+  "include": ["src"]
 }

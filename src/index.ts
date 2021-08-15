@@ -1,12 +1,14 @@
+const moment = require('moment');
 import './styles/style.scss';
 
-const fromInput = document.querySelector('#arrival');
-const toInput = document.querySelector('#departure');
+const fromInput = <HTMLInputElement>document.querySelector('#arrival');
+const toInput = <HTMLInputElement>document.querySelector('#departure');
+const submitBtn = <HTMLButtonElement>document.querySelector('.button');
+
+submitBtn.addEventListener('click', () => {
+    handleSubmit();
+});
 
 const handleSubmit = () => {
-
-};
-
-const fetchFlightData = (from: string, to: string) => {
 
 };
