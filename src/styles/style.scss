@@ -1,0 +1,54 @@
+@font-face {
+  font-family: 'Raleway';
+  src: url("../fonts/Raleway-Regular.ttf") format('truetype');
+}
+
+@font-face {
+  font-family: 'Prompt';
+  src: url("../fonts/Prompt-Regular.ttf") format('truetype');
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Prompt';
+}
+
+h1 {
+  color: red;
+}
+
+.content {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.places {
+  width: 100%;
+  display: flex;
+}
+
+.input {
+  display: flex;
+  width: 200px;
+  flex-direction: column;
+
+  &:first-of-type {
+    margin-right: 16px;
+  }
+
+  &__enter {
+    padding: 8px;
+    outline: none;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #c4c4c4;
+
+    &:focus {
+      border-color: #0091ff;
+      box-shadow: 0 0 0 1px #0091ff;
+    }
+  }
+}

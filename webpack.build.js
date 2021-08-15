@@ -2,12 +2,20 @@ const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const TerserPlugin = require("terser-webpack-plugin");
 
-const filename = ext => `[name].${ext}`;
+const filename = ext => `[name].[hash].${ext}`;
 
 const styleLoader = loader => {
   const loaders = [
     'style-loader',
+    {
+      loader: MiniCssExtractPlugin.loader,
+      options: {
+        hmr: false,
+        reloadAll: true
+      }
+    },
     'css-loader'
   ];
 
@@ -20,11 +28,14 @@ const styleLoader = loader => {
 
 module.exports = {
   entry: './src/index.ts',
-  mode: 'development',
+  mode: 'production',
   optimization: {
     splitChunks: {
-      chunks: "all"
-    }
+      chunks: 'all'
+    },
+    minimizer: [
+      new TerserPlugin()
+    ]
   },
   output: {
     filename: filename('js'),
@@ -47,18 +58,21 @@ module.exports = {
       },
       {
         test: /\.(ttf|woff|woff2|eot)$/,
-        use: ['file-loader']
+        use: ['url-loader']
       },
     ]
   },
   plugins: [
-      new HtmlWebpackPlugin({
-        template: "./public/index.html",
-        favicon: "./public/favicon.ico",
-      }),
-      new CleanWebpackPlugin(),
-      new MiniCssExtractPlugin({
-        filename: filename('css')
-      })
+    new HtmlWebpackPlugin({
+      template: "./public/index.html",
+      favicon: "./public/favicon.ico",
+      minify: {
+        collapseWhitespace: true,
+      }
+    }),
+    new CleanWebpackPlugin(),
+    new MiniCssExtractPlugin({
+      filename: filename('css')
+    })
   ],
 };
