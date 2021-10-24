@@ -82,3 +82,62 @@ h1 {
     }
   }
 }
+
+.plane {
+  position: relative;
+  height: 250px;
+  transform: scaleX(-1);
+
+  svg {
+    position: absolute;
+    right: 0;
+    width: 200px;
+  }
+
+  #plane,
+  .window {
+    animation: levitatingPlane infinite 5s;
+  }
+}
+
+.progress {
+  width: 100%;
+  height: 22px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  border: 1px solid #c4c4c4;
+
+  &__bar {
+    height: 100%;
+    background-image: linear-gradient(45deg, #00d4ff 0%, #fff 50%, #00d4ff 100%);
+  }
+
+  &__text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@keyframes levitatingPlane {
+  0% {
+    transform: translateY(5px);
+  }
+  20% {
+    transform: translateY(10px);
+  }
+  40% {
+    transform: translateX(-5px);
+  }
+  60% {
+    transform: translateX(-10px);
+  }
+  80% {
+    transform: translateY(5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
